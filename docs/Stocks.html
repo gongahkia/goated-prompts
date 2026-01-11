@@ -12,66 +12,41 @@
         <button id="theme-switcher">Toggle Theme</button>
     </header>
     <main>
-        <div class="prompt-container">
-            <h2>Query a specific stock</h2>
-            <p><strong>Model:</strong> Perplexity.ai</p>
-            <p><strong>Tier:</strong> S</p>
-            <p><strong>Prompt:</strong></p>
-            <pre><code>Please provide a research-backed outlook for the stock XXX by the end of YYYY. Also adhere to the following requirements.
-
-1. Include quantitative forecasts, key drivers and any worrying issues.
-2. Cite only credible research sources, do not cite purely one-sided opinion-based forums. 
-3. Specifically cite what expert projections/opinions on the given stock are.
-4. Present at least 3 scenarios (base, upside, downside) with probabilities for each.
-5. Summarize your methodology and indicate your confidence level in the projections.
-</code></pre>
-            <p><strong>Remarks:</strong></p>
-            <p>Replace XXX with the stock ticker and YYYY with the target date.</p>
-            <p><strong>References:</strong></p>
-            <p></p>
-        </div>
-        <div class="prompt-container">
-            <h2>Get personalised stock reccomendations</h2>
-            <p><strong>Model:</strong> Perplexity.ai</p>
-            <p><strong>Tier:</strong> S</p>
-            <p><strong>Prompt:</strong></p>
-            <pre><code>You are an expert financial analyst advising a user with SGD XXX available for stock investments on MooMoo. Use the following context and preferences to generate YYY stock recommendations, divided into ZZZ % stable dividend-paying positions and AAA % volatile growth positions:
-
-Context & Holdings
-- Available capital: SGD XXX  
-- Existing portfolio: BBB  
-- Geographic focus: US first, then China and Singapore  
-- Sector focus: all tech sub-sectors (Software/SaaS, Semiconductors, AI/ML, Cloud, Cybersecurity, E-commerce/Fintech, Hardware) and a few extremely stable Singapore blue-chips  
-
-User Preferences
-- Timeframe: prioritize short-term trades for the more volatile stocks (weeks/months) but support long-term trades for the stable blue-chips and voltatile stocks with long-term growth prospects (years)
-- Risk tolerance: comfortable with volatility if upside conviction is high, otherwise lean toward established names  
-- Diversification: split capital across multiple positions (fractional shares are accepted)  
-- Dividend vs Growth: ZZZ dividend-oriented, AAA growth-oriented  
-
-Task
-1. If any key information is unclear, ask concise follow-up questions before making recommendations.  
-2. Research current market conditions and valuations thoroughly.
-3. Recommend YYY stocks, specifying for each:
-- Ticker and company name  
-- Price (local currency) and suggested allocation amount  
-- Position type: “Stable” or “Growth”  
-- Brief rationale (including catalysts, valuation metrics, dividend yield if applicable)  
-4. Provide two allocation views:
-- Equal-weighted across all YYY positions  
-- Percentage split aligning with ZZZ/AAA mix
-5. Conclude with a one-paragraph summary of why this mix suits the user’s objectives.
-
-Ensure clarity, brevity, and actionable insight.
-</code></pre>
-            <p><strong>Remarks:</strong></p>
-            <p>Replace XXX with the amount of liquid capital in SGD and YYY with number of stock recommendations.</p>
-            <p>Replace ZZZ with the percentage of stable dividend positions and AAA with the percentage of volatile growth-oriented positions, where ZZZ + AAA = 100%</p>
-            <p>Replace BBB with existing positions </p>
-            <p><strong>References:</strong></p>
-            <p></p>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Prompt</th>
+                    <th>Remarks</th>
+                    <th>References</th>
+                    <th>Tier</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Perplexity.ai</td>
+                    <td>Please provide a research-backed outlook for the stock XXX by the end of YYYY. Also adhere to the following requirements.<br><br>1. Include quantitative forecasts, key drivers and any worrying issues.<br>2. Cite only credible research sources, do not cite purely one-sided opinion-based forums. <br>3. Specifically cite what expert projections/opinions on the given stock are.<br>4. Present at least 3 scenarios (base, upside, downside) with probabilities for each.<br>5. Summarize your methodology and indicate your confidence level in the projections.</td>
+                    <td>Replace XXX with the stock ticker and YYYY with the target date.</td>
+                    <td></td>
+                    <td>S</td>
+                    <td>Query a specific stock</td>
+                </tr>
+                <tr>
+                    <td>Perplexity.ai</td>
+                    <td>You are an expert financial analyst advising a user with SGD XXX available for stock investments on MooMoo. Use the following context and preferences to generate YYY stock recommendations, divided into ZZZ % stable dividend-paying positions and AAA % volatile growth positions:<br><br>Context &amp; Holdings<br>- Available capital: SGD XXX  <br>- Existing portfolio: BBB  <br>- Geographic focus: US first, then China and Singapore  <br>- Sector focus: all tech sub-sectors (Software/SaaS, Semiconductors, AI/ML, Cloud, Cybersecurity, E-commerce/Fintech, Hardware) and a few extremely stable Singapore blue-chips  <br><br>User Preferences<br>- Timeframe: prioritize short-term trades for the more volatile stocks (weeks/months) but support long-term trades for the stable blue-chips and voltatile stocks with long-term growth prospects (years)<br>- Risk tolerance: comfortable with volatility if upside conviction is high, otherwise lean toward established names  <br>- Diversification: split capital across multiple positions (fractional shares are accepted)  <br>- Dividend vs Growth: ZZZ dividend-oriented, AAA growth-oriented  <br><br>Task<br>1. If any key information is unclear, ask concise follow-up questions before making recommendations.  <br>2. Research current market conditions and valuations thoroughly.<br>3. Recommend YYY stocks, specifying for each:<br>- Ticker and company name  <br>- Price (local currency) and suggested allocation amount  <br>- Position type: “Stable” or “Growth”  <br>- Brief rationale (including catalysts, valuation metrics, dividend yield if applicable)  <br>4. Provide two allocation views:<br>- Equal-weighted across all YYY positions  <br>- Percentage split aligning with ZZZ/AAA mix<br>5. Conclude with a one-paragraph summary of why this mix suits the user’s objectives.<br><br>Ensure clarity, brevity, and actionable insight.</td>
+                    <td>Replace XXX with the amount of liquid capital in SGD and YYY with number of stock recommendations.<br><br>Replace ZZZ with the percentage of stable dividend positions and AAA with the percentage of volatile growth-oriented positions, where ZZZ + AAA = 100%<br><br>Replace BBB with existing positions <br><br><br><br><br><br><br></td>
+                    <td></td>
+                    <td>S</td>
+                    <td>Get personalised stock reccomendations</td>
+                </tr>
+            </tbody>
+        </table>
     </main>
+    <footer>
+        Made by <a href="https://gabrielongzm.com" target="_blank">Gabriel Ong</a>. 
+        Source: <a href="https://github.com/gongahkia/goated-prompts" target="_blank">gongahkia/goated-prompts</a>
+    </footer>
     <script src="../script.js"></script>
 </body>
 </html>

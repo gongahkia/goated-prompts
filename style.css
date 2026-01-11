@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
 :root {
     --background-light: #fdf6e3;
     --text-light: #657b83;
@@ -6,10 +8,17 @@
 }
 
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
     margin: 0;
     padding: 2em;
     transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
 }
 
 body.light-mode {
@@ -59,10 +68,15 @@ body.dark-mode #theme-switcher {
     margin-bottom: 2em;
 }
 
+nav {
+    text-align: center;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: inline-block;
 }
 
 nav li {
@@ -85,23 +99,41 @@ a:hover {
     text-decoration: underline;
 }
 
-.prompt-container {
-    margin-bottom: 2em;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2em;
 }
 
-.prompt-container h2 {
-    font-size: 1.2em;
+th, td {
+    border: 1px solid;
+    padding: 0.8em;
+    text-align: left;
+}
+
+body.light-mode th, body.light-mode td {
+    border-color: var(--text-light);
+}
+
+body.dark-mode th, body.dark-mode td {
+    border-color: var(--text-dark);
+}
+
+th {
     font-weight: bold;
-    margin-bottom: 0.5em;
 }
 
-.prompt-container pre {
-    background-color: rgba(0, 0, 0, 0.05);
-    padding: 1em;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+footer {
+    text-align: center;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid;
 }
 
-body.dark-mode .prompt-container pre {
-    background-color: rgba(255, 255, 255, 0.05);
+body.light-mode footer {
+    border-top-color: var(--text-light);
+}
+
+body.dark-mode footer {
+    border-top-color: var(--text-dark);
 }
