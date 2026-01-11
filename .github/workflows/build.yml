@@ -138,7 +138,7 @@ jobs:
                             cell_content = f'<pre><code>{html.escape(col)}</code></pre>'
                         else:
                             cell_content = html.escape(col).replace('\n', '<br>')
-                        html_file.write(f'                    <td>{cell_content}</td>')
+                        html_file.write(f'                    <td data-label="{html.escape(header[i])}">{cell_content}</td>')
                     html_file.write('                </tr>')
                 html_file.write('            </tbody>')
                 html_file.write('        </table>')

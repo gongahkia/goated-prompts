@@ -157,3 +157,48 @@ body.light-mode footer {
 body.dark-mode footer {
     border-top-color: var(--text-dark);
 }
+
+@media (max-width: 768px) {
+    body {
+        padding: 1em;
+    }
+
+    table, thead, tbody, th, td {
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 1em;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    body.light-mode td {
+        border-bottom-color: var(--text-light);
+    }
+
+    body.dark-mode td {
+        border-bottom-color: var(--text-dark);
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+}
