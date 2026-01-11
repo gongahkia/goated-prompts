@@ -109,6 +109,21 @@ th, td {
     border: 1px solid;
     padding: 0.8em;
     text-align: left;
+    vertical-align: top;
+}
+
+td pre {
+    max-height: 200px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 1em;
+    margin: 0;
+}
+
+body.dark-mode td pre {
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
 body.light-mode th, body.light-mode td {
