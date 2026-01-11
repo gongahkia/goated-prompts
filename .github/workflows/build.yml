@@ -54,7 +54,7 @@ jobs:
                 html_file.write('<body>')
                 html_file.write('    <header>')
                 html_file.write(f'<h1><a href="../index.html">Goated Prompts</a> / {title}</h1>')
-                html_file.write('        <button id="theme-switcher">Toggle Theme</button>')
+                html_file.write('        <button id="theme-switcher">Theme</button>')
                 html_file.write('    </header>')
                 html_file.write('    <main>')
                 html_file.write('        <table>')
