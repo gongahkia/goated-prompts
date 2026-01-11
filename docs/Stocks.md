@@ -1,12 +1,41 @@
-Model,Prompt,Remarks,References,Tier,Purpose
-Perplexity.ai,"Please provide a research-backed outlook for the stock XXX by the end of YYYY. Also adhere to the following requirements.
+# Stock Prompts
+
+## Query a specific stock
+
+**Model:** Perplexity.ai
+
+**Tier:** S
+
+**Prompt:**
+
+```
+Please provide a research-backed outlook for the stock XXX by the end of YYYY. Also adhere to the following requirements.
 
 1. Include quantitative forecasts, key drivers and any worrying issues.
 2. Cite only credible research sources, do not cite purely one-sided opinion-based forums. 
 3. Specifically cite what expert projections/opinions on the given stock are.
 4. Present at least 3 scenarios (base, upside, downside) with probabilities for each.
-5. Summarize your methodology and indicate your confidence level in the projections.",Replace XXX with the stock ticker and YYYY with the target date.,,S,Query a specific stock
-Perplexity.ai,"You are an expert financial analyst advising a user with SGD XXX available for stock investments on MooMoo. Use the following context and preferences to generate YYY stock recommendations, divided into ZZZ % stable dividend-paying positions and AAA % volatile growth positions:
+5. Summarize your methodology and indicate your confidence level in the projections.
+```
+
+**Remarks:**
+
+Replace XXX with the stock ticker and YYYY with the target date.
+
+**References:**
+
+
+
+## Get personalised stock reccomendations
+
+**Model:** Perplexity.ai
+
+**Tier:** S
+
+**Prompt:**
+
+```
+You are an expert financial analyst advising a user with SGD XXX available for stock investments on MooMoo. Use the following context and preferences to generate YYY stock recommendations, divided into ZZZ % stable dividend-paying positions and AAA % volatile growth positions:
 
 Context & Holdings
 - Available capital: SGD XXX  
@@ -33,15 +62,17 @@ Task
 - Percentage split aligning with ZZZ/AAA mix
 5. Conclude with a one-paragraph summary of why this mix suits the user’s objectives.
 
-Ensure clarity, brevity, and actionable insight.","Replace XXX with the amount of liquid capital in SGD and YYY with number of stock recommendations.
+Ensure clarity, brevity, and actionable insight.
+```
+
+**Remarks:**
+
+Replace XXX with the amount of liquid capital in SGD and YYY with number of stock recommendations.
 
 Replace ZZZ with the percentage of stable dividend positions and AAA with the percentage of volatile growth-oriented positions, where ZZZ + AAA = 100%
 
 Replace BBB with existing positions 
 
+**References:**
 
 
-
-
-
-",,S,Get personalised stock reccomendations
