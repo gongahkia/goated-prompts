@@ -36,15 +36,16 @@ jobs:
           echo "GCP_SA_KEY or SHEET_ID secret not set. Skipping Google Sheets fetch."
           exit 0
         fi
-        python fetch_sheets.py "General" "goated prompts - General.csv" "$SHEET_ID"
-        python fetch_sheets.py "Stocks" "goated prompts - Stocks.csv" "$SHEET_ID"
-        python fetch_sheets.py "Studying" "goated prompts - Studying.csv" "$SHEET_ID"
+        mkdir -p cache
+        python scripts/fetch_sheets.py "General" "cache/goated prompts - General.csv" "$SHEET_ID"
+        python scripts/fetch_sheets.py "Stocks" "cache/goated prompts - Stocks.csv" "$SHEET_ID"
+        python scripts/fetch_sheets.py "Studying" "cache/goated prompts - Studying.csv" "$SHEET_ID"
 
     - name: Run HTML conversion script
       run: |
-        python csv_to_html.py "goated prompts - General.csv" "docs/General.html" "General"
-        python csv_to_html.py "goated prompts - Stocks.csv" "docs/Stocks.html" "Stocks"
-        python csv_to_html.py "goated prompts - Studying.csv" "docs/Studying.html" "Studying"
+        python scripts/csv_to_html.py "cache/goated prompts - General.csv" "docs/General.html" "General"
+        python scripts/csv_to_html.py "cache/goated prompts - Stocks.csv" "docs/Stocks.html" "Stocks"
+        python scripts/csv_to_html.py "cache/goated prompts - Studying.csv" "docs/Studying.html" "Studying"
 
     - name: Commit and push if changed
       run: |
