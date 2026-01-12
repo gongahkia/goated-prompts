@@ -6,7 +6,7 @@ This document outlines the steps required to set up the automated deployment for
 
 The process works as follows:
 1. Data is updated in the source Google Sheet.
-2. A GitHub Action runs automatically on a push to the `main` branch or can be triggered manually.
+2. A GitHub Action runs automatically on a push to the `main` branch, on a manual trigger, or **automatically every Monday at 8 AM SGT**.
 3. The Action authenticates with the Google Sheets API using a secure Service Account.
 4. It fetches the latest data, overwrites the `.csv` files in the repository.
 5. It rebuilds the `.html` files from the new CSVs.

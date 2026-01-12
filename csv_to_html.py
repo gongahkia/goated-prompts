@@ -22,7 +22,7 @@ def csv_to_html(csv_file_path, html_file_path, title):
         html_file.write('<head>')
         html_file.write('    <meta charset="UTF-8">')
         html_file.write('    <meta name="viewport" content="width=device-width, initial-scale=1.0">')
-        html_file.write(f'<title>{title}</title>')
+        html_file.write(f'<title>goated-prompts/{title.lower()}</title>')
         html_file.write('    <link rel="stylesheet" href="../style.css">')
         html_file.write('</head>')
         html_file.write('<body>')
