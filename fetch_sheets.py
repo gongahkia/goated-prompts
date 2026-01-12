@@ -3,11 +3,18 @@ import gspread
 import os
 import sys
 import json
+from google.oauth2.service_account import Credentials
 
 def fetch_sheet_data(credentials_json_str, sheet_id, sheet_name, output_csv_path):
     try:
         credentials_json = json.loads(credentials_json_str)
-        creds = gspread.service_account_from_dict(credentials_json)
+        
+        scopes = [
+            'https://www.googleapis.com/auth/spreadsheets',
+            'https://www.googleapis.com/auth/drive'
+        ]
+        
+        creds = Credentials.from_service_account_info(credentials_json, scopes=scopes)
         client = gspread.authorize(creds)
 
         spreadsheet = client.open_by_key(sheet_id)
