@@ -5,6 +5,14 @@ const body = document.body;
 function setTheme(theme) {
     body.className = theme;
     localStorage.setItem('theme', theme);
+    const logoImg = document.getElementById('logo-img');
+    if (logoImg) {
+        if (theme === 'dark-mode') {
+            logoImg.src = 'asset/logo-dark.png';
+        } else {
+            logoImg.src = 'asset/logo-light.png';
+        }
+    }
 }
 
 // Toggle theme
@@ -14,11 +22,10 @@ themeSwitcher.addEventListener('click', () => {
     setTheme(newTheme);
 });
 
-// Set initial theme
+// Set initial theme and logo
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
     setTheme(savedTheme);
 } else {
-    // Default to light mode if no theme is saved
     setTheme('light-mode');
 }
