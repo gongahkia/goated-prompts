@@ -11,10 +11,13 @@ def csv_to_html(csv_file_path, html_file_path, title):
             header = [] # Handle empty file
         rows = list(reader)
 
-    # Find the index of the 'Prompt' column
+    # Find the index of the 'Prompt' and 'References' columns
     prompt_column_index = -1
+    references_column_index = -1
     if 'Prompt' in header:
         prompt_column_index = header.index('Prompt')
+    if 'References' in header:
+        references_column_index = header.index('References')
 
     with open(html_file_path, 'w', encoding='utf-8') as html_file:
         html_file.write('<!DOCTYPE html>')
@@ -44,7 +47,10 @@ def csv_to_html(csv_file_path, html_file_path, title):
                 continue
             html_file.write('                <tr>')
             for i, col in enumerate(row):
-                if i == prompt_column_index:
+                # If this is the References column and it's empty, fill with 4 spaces
+                if i == references_column_index and (col.strip() == ""):
+                    cell_content = "    "
+                elif i == prompt_column_index:
                     cell_content = f'<pre><code>{html.escape(col)}</code></pre>'
                 else:
                     cell_content = html.escape(col).replace('\n', '<br>')
