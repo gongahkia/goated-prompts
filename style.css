@@ -170,42 +170,59 @@ body.dark-mode footer {
         padding: 1em;
     }
 
-    table, thead, tbody, th, td {
-        display: block;
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 1em;
     }
-
     thead {
         display: none;
     }
-
     tr {
-        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+        background: none;
+        margin-bottom: 1.5em;
+        border-radius: 0.5em;
+        box-shadow: none;
+        border: none;
     }
-
     td {
+        display: flex;
+        align-items: flex-start;
         border: none;
         border-bottom: 1px solid;
-        text-align: right;
+        text-align: left;
         position: relative;
-        padding-left: 50%;
+        padding: 0.7em 0.5em 0.7em 0.5em;
+        min-height: 2.5em;
+        font-size: 1em;
+        background: none;
+        word-break: break-word;
     }
-
     body.light-mode td {
         border-bottom-color: var(--text-light);
     }
-
     body.dark-mode td {
         border-bottom-color: var(--text-dark);
     }
-
     td:before {
         content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        text-align: left;
+        min-width: 7em;
         font-weight: bold;
+        margin-right: 0.5em;
+        color: inherit;
+        flex-shrink: 0;
+        text-align: left;
+        display: inline-block;
+    }
+    td:last-child {
+        border-bottom: none;
+    }
+    /* Make empty references cell visible and consistent */
+    td[data-label="References"]:empty::after {
+        content: "    ";
+        color: transparent;
+        display: inline-block;
     }
 }
