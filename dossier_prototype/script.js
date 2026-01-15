@@ -97,53 +97,56 @@ function renderContent(category) {
     contentContainer.innerHTML = '';
     const prompts = data[category];
     
-    if (!prompts) return;
+    if (!prompts || prompts.length === 0) return;
 
-    prompts.forEach(item => {
-        // Container for the whole "sub-folder"
-        const subDossierContainer = document.createElement('div');
-        subDossierContainer.className = 'sub-dossier-container';
-        
-        // The "Tab" of the sub-folder
+    // 1. Create Layout Structure
+    const wrapper = document.createElement('div');
+    wrapper.className = 'sub-dossier-wrapper';
+
+    const subTabsContainer = document.createElement('div');
+    subTabsContainer.className = 'sub-dossier-tabs';
+
+    const subBody = document.createElement('div');
+    subBody.className = 'sub-dossier-body';
+
+    // 2. Render Sub-Tabs
+    prompts.forEach((item, index) => {
         const subTab = document.createElement('div');
-        subTab.className = 'sub-dossier-tab';
-        subTab.innerHTML = `
-            <span class="folder-icon">📁</span>
-            ${item.Topic}
-            <span class="toggle-icon">▶</span>
-        `;
+        subTab.className = `sub-tab ${index === 0 ? 'active' : ''}`;
+        subTab.textContent = item.Topic;
         
-        // The "Body" of the sub-folder
-        const subBody = document.createElement('div');
-        subBody.className = 'sub-dossier-body';
-
-        // Content Wrapper (for animation)
-        const contentWrapper = document.createElement('div');
-        contentWrapper.className = 'sub-dossier-content-wrapper';
-        
-        let referencesHtml = '';
-        if (item.References) {
-            referencesHtml = `<div class="tags"><strong>Refs:</strong> ${item.References}</div>`;
-        }
-
-        contentWrapper.innerHTML = `
-            <pre>${item.Prompt}</pre>
-            ${referencesHtml}
-        `;
-        
-        // Assemble
-        subBody.appendChild(contentWrapper);
-        subDossierContainer.appendChild(subTab);
-        subDossierContainer.appendChild(subBody);
-        
-        // Interaction
         subTab.onclick = () => {
-            subDossierContainer.classList.toggle('open');
-            // Update icon rotation logic if needed via class
+            // Update UI state
+            Array.from(subTabsContainer.children).forEach(t => t.classList.remove('active'));
+            subTab.classList.add('active');
+            
+            // Render specific content
+            renderPromptContent(subBody, item);
         };
 
-        contentContainer.appendChild(subDossierContainer);
+        subTabsContainer.appendChild(subTab);
     });
+
+    // 3. Render Initial Content (First Item)
+    renderPromptContent(subBody, prompts[0]);
+
+    // 4. Assemble
+    wrapper.appendChild(subTabsContainer);
+    wrapper.appendChild(subBody);
+    contentContainer.appendChild(wrapper);
+}
+
+function renderPromptContent(container, item) {
+    let referencesHtml = '';
+    if (item.References) {
+        referencesHtml = `<div class="tags"><strong>Refs:</strong> ${item.References}</div>`;
+    }
+
+    container.innerHTML = `
+        <h2 style="margin-top:0;">${item.Topic}</h2>
+        <pre>${item.Prompt}</pre>
+        ${referencesHtml}
+    `;
 }
 
 // Init
