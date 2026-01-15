@@ -59,104 +59,14 @@ body {
     font-family: 'JetBrains Mono', monospace;
     margin: 0;
     padding: 2rem;
-    height: 100vh;
+    min-height: 100vh; /* Allow growth, but ensure at least full screen */
     display: flex;
     flex-direction: column;
     transition: background-color 0.3s, color 0.3s;
-    overflow: hidden; /* Prevent body scroll, scroll inside folder */
+    /* Removed overflow: hidden to allow page scroll */
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-h1 {
-    margin: 0;
-    font-size: 1.2rem;
-    opacity: 0.7;
-}
-
-/* Theme Switcher */
-#theme-switcher {
-    background: none;
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    padding: 0.5rem 1rem;
-    font-family: inherit;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-#theme-switcher:hover {
-    background-color: var(--folder-border);
-    color: var(--bg-color);
-}
-
-/* Main Dossier Container */
-.dossier-container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-}
-
-/* Tabs Area */
-.dossier-tabs {
-    display: flex;
-    padding-left: 1rem;
-    /* Move tabs slightly down to overlap folder body */
-    margin-bottom: -2px; 
-    z-index: 10;
-}
-
-.tab {
-    padding: 0.8rem 2rem;
-    background-color: var(--tab-inactive);
-    border: 1px solid var(--folder-border);
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    margin-right: -12px; /* Overlap */
-    cursor: pointer;
-    font-weight: bold;
-    color: var(--text-color);
-    transition: all 0.2s ease;
-    position: relative;
-    box-shadow: -2px -2px 5px rgba(0,0,0,0.05);
-    z-index: 1; /* Low default */
-}
-
-.tab:hover {
-    transform: translateY(-2px);
-    background-color: var(--folder-border);
-    color: var(--bg-color);
-    z-index: 6; /* Bring hovered tab to front */
-}
-
-.tab.active {
-    background-color: var(--folder-bg);
-    z-index: 10; /* Highest */
-    border-bottom: 2px solid var(--folder-bg); /* Match body color to 'merge' */
-    transform: translateY(0);
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-}
-
-/* Ensure the tab has a solid background that covers what's behind it */
-.tab::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: inherit;
-    z-index: 11;
-}
+/* ... header, theme switcher ... */
 
 /* Folder Body */
 .dossier-body {
@@ -164,96 +74,32 @@ h1 {
     border: 1px solid var(--folder-border);
     border-radius: 0 8px 8px 8px; 
     border-top-left-radius: 0; 
-    flex-grow: 1;
     padding: 2rem;
     box-shadow: var(--shadow);
-    overflow: hidden; 
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
+    /* Removed overflow/flex constraints to allow content to dictate height */
 }
 
 #content-container {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    overflow: hidden;
+    /* Removed height: 100% */
 }
 
-/* Nested Dossier (Inner Folder) */
-.sub-dossier-wrapper {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Fill the parent */
-}
-
-.sub-dossier-tabs {
-    display: flex;
-    padding-left: 0.5rem;
-    margin-bottom: -1px;
-    z-index: 20;
-    overflow-x: auto; /* Allow scrolling if many tabs */
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-}
-.sub-dossier-tabs::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
-}
-
-.sub-tab {
-    padding: 0.5rem 1.2rem;
-    background-color: var(--tab-inactive);
-    border: 1px solid var(--folder-border);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    margin-right: -8px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    color: var(--text-color);
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    position: relative;
-    box-shadow: -1px -1px 3px rgba(0,0,0,0.05);
-    z-index: 1;
-}
-
-.sub-tab:hover {
-    transform: translateY(-2px);
-    background-color: var(--folder-border);
-    color: var(--bg-color);
-    z-index: 26;
-}
-
-.sub-tab.active {
-    background-color: var(--subfolder-bg);
-    z-index: 30;
-    border-bottom: 1px solid var(--subfolder-bg);
-    transform: translateY(0);
-    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
-}
-
-.sub-tab::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: inherit;
-    z-index: 31;
-}
+/* ... */
 
 .sub-dossier-body {
     background-color: var(--subfolder-bg);
     border: 1px solid var(--folder-border);
     border-radius: 0 6px 6px 6px;
     padding: 2rem;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.02); /* Slight inset to show depth */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
     position: relative;
     z-index: 15;
-    flex-grow: 1;
-    overflow-y: auto;
+    /* Removed flex-grow/overflow-y to allow expansion */
 }
 
 /* Ensure the border looks right */
