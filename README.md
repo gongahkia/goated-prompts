@@ -14,10 +14,10 @@ Simple Web App with the prompts I use.
 
 ## Screenshot
 
-### V1
+### [V1](./v1/)
 
 ![](./asset/reference/1.png)
 
-### V2
+### [V2](./v2/)
 
 ![](./asset/reference/2.png)
