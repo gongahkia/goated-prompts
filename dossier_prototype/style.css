@@ -325,32 +325,6 @@ body.dark-mode h3 {
     line-height: 1.5;
 }
 
-/* Copy Button */
-.copy-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: var(--folder-bg);
-    border: 1px solid var(--folder-border);
-    cursor: pointer;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-family: inherit;
-    font-weight: bold;
-    opacity: 0;
-    transition: opacity 0.2s, background-color 0.2s;
-    color: var(--text-color);
-}
-
-.code-container:hover .copy-btn {
-    opacity: 1;
-}
-
-.copy-btn:hover {
-    background-color: var(--tab-inactive);
-}
-
 .tags {
     margin-top: 1rem;
     font-size: 0.8em;

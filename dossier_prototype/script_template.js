@@ -121,7 +121,6 @@ function renderPromptContent(container, item) {
         <h2 style="margin-top:0.5rem; margin-bottom: 1rem;">${item.Purpose || item.Topic}</h2>
         
         <div class="code-container">
-            <button class="copy-btn" title="Copy to clipboard">Copy</button>
             <pre><code>${item.Prompt}</code></pre>
         </div>
         
@@ -130,24 +129,6 @@ function renderPromptContent(container, item) {
         ${referencesHtml}
     `;
 
-    // Add Copy Logic
-    const copyBtn = container.querySelector('.copy-btn');
-    const codeBlock = container.querySelector('code');
-    
-    if (copyBtn && codeBlock) {
-        copyBtn.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(codeBlock.innerText);
-                const originalText = copyBtn.innerText;
-                copyBtn.innerText = 'Copied!';
-                setTimeout(() => {
-                    copyBtn.innerText = originalText;
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy!', err);
-            }
-        });
-    }
 }
 
 // Init
