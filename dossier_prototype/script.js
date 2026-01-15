@@ -233,7 +233,7 @@ function renderPromptContent(container, item) {
     
     let remarksHtml = '';
     if (item.Remarks) {
-        remarksHtml = `<div class="remarks"><h3>Remarks</h3><p>${String(item.Remarks).replace(/\n/g, '<br>')}</p></div>`;
+        remarksHtml = `<div><h3>Remarks</h3><p>${String(item.Remarks).replace(/\n/g, '<br>')}</p></div>`;
     }
 
     container.innerHTML = `
@@ -244,13 +244,13 @@ function renderPromptContent(container, item) {
         
         <h2 style="margin-top:0.5rem; margin-bottom: 1rem;">${item.Purpose || item.Topic}</h2>
         
-        ${remarksHtml}
-        
         <div class="code-container">
             <button class="copy-btn" title="Copy to clipboard">Copy</button>
             <pre><code>${item.Prompt}</code></pre>
         </div>
         
+        ${remarksHtml}
+
         ${referencesHtml}
     `;
 

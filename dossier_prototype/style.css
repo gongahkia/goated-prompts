@@ -284,18 +284,6 @@ h1 {
     border-radius: 4px;
 }
 
-.remarks {
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background-color: rgba(255, 255, 0, 0.05); /* Very subtle highlight */
-    border-left: 3px solid var(--yellow);
-    font-size: 0.95em;
-}
-body.dark-mode .remarks {
-    background-color: rgba(255, 255, 255, 0.03);
-}
-
 .code-container {
     position: relative;
     margin-bottom: 1rem;
@@ -332,7 +320,7 @@ body.dark-mode h3 {
     color: var(--base0);
 }
 
-.remarks p, .tags p {
+.tags p {
     margin: 0;
     line-height: 1.5;
 }
