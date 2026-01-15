@@ -313,6 +313,30 @@ pre {
     margin: 0;
 }
 
+h2 {
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--folder-border);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--base01);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+body.dark-mode h3 {
+    color: var(--base0);
+}
+
+.remarks p, .tags p {
+    margin: 0;
+    line-height: 1.5;
+}
+
 /* Copy Button */
 .copy-btn {
     position: absolute;
@@ -321,9 +345,11 @@ pre {
     background: var(--folder-bg);
     border: 1px solid var(--folder-border);
     cursor: pointer;
-    padding: 0.3rem 0.6rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    font-size: 0.8em;
+    font-size: 0.75rem;
+    font-family: inherit;
+    font-weight: bold;
     opacity: 0;
     transition: opacity 0.2s, background-color 0.2s;
     color: var(--text-color);

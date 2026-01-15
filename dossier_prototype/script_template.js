@@ -104,26 +104,26 @@ function renderContent(category) {
 function renderPromptContent(container, item) {
     let referencesHtml = '';
     if (item.References) {
-        referencesHtml = `<div class="tags"><strong>Refs:</strong> ${item.References}</div>`;
+        referencesHtml = `<div class="tags"><h3>References</h3><p>${item.References}</p></div>`;
     }
     
     let remarksHtml = '';
     if (item.Remarks) {
-        remarksHtml = `<div class="remarks"><strong>Remarks:</strong> ${String(item.Remarks).replace(/\n/g, '<br>')}</div>`;
+        remarksHtml = `<div class="remarks"><h3>Remarks</h3><p>${String(item.Remarks).replace(/\n/g, '<br>')}</p></div>`;
     }
 
     container.innerHTML = `
-        <div class=\"metadata\">
-            <span class=\"meta-item tier\"><strong>Tier:</strong> ${item.Tier || 'N/A'}</span>
-            <span class=\"meta-item model\"><strong>Model:</strong> ${item.Model || 'N/A'}</span>
+        <div class="metadata">
+            <span class="meta-item tier"><strong>Tier:</strong> ${item.Tier || 'N/A'}</span>
+            <span class="meta-item model"><strong>Model:</strong> ${item.Model || 'N/A'}</span>
         </div>
         
-        <h2 style=\"margin-top:0.5rem; margin-bottom: 1rem;\">${item.Purpose || item.Topic}</h2>
+        <h2 style="margin-top:0.5rem; margin-bottom: 1rem;">${item.Purpose || item.Topic}</h2>
         
         ${remarksHtml}
         
-        <div class=\"code-container\">
-            <button class=\"copy-btn\" title=\"Copy to clipboard\">📋</button>
+        <div class="code-container">
+            <button class="copy-btn" title="Copy to clipboard">Copy</button>
             <pre><code>${item.Prompt}</code></pre>
         </div>
         
@@ -139,7 +139,7 @@ function renderPromptContent(container, item) {
             try {
                 await navigator.clipboard.writeText(codeBlock.innerText);
                 const originalText = copyBtn.innerText;
-                copyBtn.innerText = '✅';
+                copyBtn.innerText = 'Copied!';
                 setTimeout(() => {
                     copyBtn.innerText = originalText;
                 }, 2000);
