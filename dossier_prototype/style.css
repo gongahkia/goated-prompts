@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    /* Solarized Light */
+    --base03:    #002b36;
+    --base02:    #073642;
+    --base01:    #586e75;
+    --base00:    #657b83;
+    --base0:     #839496;
+    --base1:     #93a1a1;
+    --base2:     #eee8d5;
+    --base3:     #fdf6e3;
+    --yellow:    #b58900;
+    --orange:    #cb4b16;
+    --red:       #dc322f;
+    --magenta:   #d33682;
+    --violet:    #6c71c4;
+    --blue:      #268bd2;
+    --cyan:      #2aa198;
+    --green:     #859900;
+
+    /* Theme Variables (Default Light) */
+    --bg-color: var(--base3);
+    --text-color: var(--base00);
+    --folder-bg: var(--base2);
+    --folder-border: var(--base1);
+    --subfolder-bg: var(--base3);
+    --subfolder-hover: #ffffff;
+    --tab-inactive: var(--base2); /* Slightly darker than bg */
+    --tab-active: var(--base2);
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body.dark-mode {
+    --bg-color: var(--base03);
+    --text-color: var(--base0);
+    --folder-bg: var(--base02);
+    --folder-border: var(--base01);
+    --subfolder-bg: var(--base03);
+    --subfolder-hover: var(--base02); /* slightly lighter than base03 */
+    --tab-inactive: var(--base02);
+    --tab-active: var(--base02);
+    --shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', monospace;
+    margin: 0;
+    padding: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s, color 0.3s;
+    overflow: hidden; /* Prevent body scroll, scroll inside folder */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    opacity: 0.7;
+}
+
+/* Theme Switcher */
+#theme-switcher {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#theme-switcher:hover {
+    background-color: var(--folder-border);
+    color: var(--bg-color);
+}
+
+/* Main Dossier Container */
+.dossier-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Tabs Area */
+.dossier-tabs {
+    display: flex;
+    padding-left: 1rem;
+    /* Move tabs slightly down to overlap folder body */
+    margin-bottom: -2px; 
+    z-index: 10;
+}
+
+.tab {
+    padding: 0.8rem 2rem;
+    background-color: var(--tab-inactive);
+    border: 1px solid var(--folder-border);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    margin-right: -10px; /* Overlap effect */
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--text-color);
+    opacity: 0.6;
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: -2px -2px 5px rgba(0,0,0,0.05);
+}
+
+.tab:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.tab.active {
+    background-color: var(--folder-bg);
+    opacity: 1;
+    z-index: 5;
+    border-bottom: 2px solid var(--folder-bg); /* Blend with body */
+    transform: translateY(0);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+/* Folder Body */
+.dossier-body {
+    background-color: var(--folder-bg);
+    border: 1px solid var(--folder-border);
+    border-radius: 0 8px 8px 8px; /* Top left square for first tab? adjusted dynamically via script or just general rounded */
+    border-top-left-radius: 0; /* Let first tab blend */
+    flex-grow: 1;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Ensure the border looks right with the tabs */
+.dossier-body::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--folder-border);
+    z-index: 1;
+}
+/* Mask the border where the active tab is - Complex to do purely CSS with multiple tabs. 
+   Simplified: The active tab sits on top (z-index) and has the same bg color. 
+   We just need to make sure the tab covers the body border.
+*/
+
+
+/* Sub-folders (Prompts) */
+.prompt-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sub-dossier {
+    background-color: var(--subfolder-bg);
+    border: 1px dashed var(--folder-border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.sub-dossier-header {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0,0,0,0.02);
+}
+
+.sub-dossier-header:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.sub-dossier-title {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.folder-icon {
+    font-size: 1.2em;
+}
+
+.toggle-icon {
+    font-size: 0.8em;
+    transition: transform 0.3s;
+}
+
+.sub-dossier.open .toggle-icon {
+    transform: rotate(90deg);
+}
+
+.sub-dossier-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding: 0 1.5rem;
+    border-top: 1px solid transparent;
+}
+
+.sub-dossier.open .sub-dossier-content {
+    max-height: 1000px; /* Arbitrary large number */
+    padding-bottom: 1.5rem;
+    border-top-color: var(--folder-border);
+    overflow-y: auto;
+}
+
+/* Code Block Styling */
+pre {
+    background-color: rgba(0,0,0,0.05);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9em;
+    border: 1px solid var(--folder-border);
+}
+
+.tags {
+    margin-top: 0.5rem;
+    font-size: 0.8em;
+    color: var(--base01);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--folder-border);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--base00);
+}
