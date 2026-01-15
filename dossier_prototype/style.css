@@ -170,67 +170,96 @@ h1 {
 */
 
 
-/* Sub-folders (Prompts) */
+/* Sub-folders (Prompts) - "Folder within a Folder" Look */
 .prompt-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.5rem; /* Space between the stacked folders */
 }
 
-.sub-dossier {
-    background-color: var(--subfolder-bg);
-    border: 1px dashed var(--folder-border);
-    border-radius: 4px;
-    overflow: hidden;
+.sub-dossier-container {
+    display: flex;
+    flex-direction: column;
+    /* Indent slightly to emphasize nesting */
+    margin-left: 1rem; 
     transition: all 0.3s ease;
 }
 
-.sub-dossier-header {
-    padding: 1rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
+.sub-dossier-tab {
+    display: inline-flex;
     align-items: center;
-    background-color: rgba(0,0,0,0.02);
-}
-
-.sub-dossier-header:hover {
-    background-color: rgba(0,0,0,0.05);
-}
-
-.sub-dossier-title {
+    align-self: flex-start;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--subfolder-bg);
+    border: 1px solid var(--folder-border);
+    border-bottom: none; /* Connects to body */
+    border-radius: 6px 6px 0 0;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-size: 0.9em;
+    cursor: pointer;
+    position: relative;
+    z-index: 5; /* Sit above the body */
+    top: 1px; /* Overlap the border of the body */
+    margin-bottom: -1px; /* Pull body up */
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+    color: var(--text-color);
+    transition: background-color 0.2s;
 }
 
+.sub-dossier-tab:hover {
+    background-color: var(--subfolder-hover);
+}
+
+.sub-dossier-body {
+    background-color: var(--subfolder-bg);
+    border: 1px solid var(--folder-border);
+    border-radius: 0 6px 6px 6px; /* Top left square to merge with tab */
+    padding: 0; /* Padding applied to content wrapper for collapse animation */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 4;
+}
+
+/* Ensure the tab connects seamlessly to the body */
+.sub-dossier-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--subfolder-bg); /* Mask the body's top border */
+    z-index: 6;
+}
+
+.sub-dossier-content-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease;
+}
+
+.sub-dossier-container.open .sub-dossier-content-wrapper {
+    max-height: 1000px;
+    padding: 1.5rem;
+}
+
+/* Icons in the tab */
 .folder-icon {
-    font-size: 1.2em;
+    margin-right: 0.5rem;
+    font-size: 1em;
 }
 
 .toggle-icon {
+    margin-left: 0.5rem;
     font-size: 0.8em;
+    opacity: 0.6;
     transition: transform 0.3s;
 }
 
-.sub-dossier.open .toggle-icon {
+.sub-dossier-container.open .toggle-icon {
     transform: rotate(90deg);
-}
-
-.sub-dossier-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
-    padding: 0 1.5rem;
-    border-top: 1px solid transparent;
-}
-
-.sub-dossier.open .sub-dossier-content {
-    max-height: 1000px; /* Arbitrary large number */
-    padding-bottom: 1.5rem;
-    border-top-color: var(--folder-border);
-    overflow-y: auto;
 }
 
 /* Code Block Styling */

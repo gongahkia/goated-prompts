@@ -100,40 +100,49 @@ function renderContent(category) {
     if (!prompts) return;
 
     prompts.forEach(item => {
-        const subDossier = document.createElement('div');
-        subDossier.className = 'sub-dossier';
+        // Container for the whole "sub-folder"
+        const subDossierContainer = document.createElement('div');
+        subDossierContainer.className = 'sub-dossier-container';
         
-        const header = document.createElement('div');
-        header.className = 'sub-dossier-header';
-        header.innerHTML = `
-            <span class="sub-dossier-title">
-                <span class="folder-icon">📁</span> ${item.Topic}
-            </span>
+        // The "Tab" of the sub-folder
+        const subTab = document.createElement('div');
+        subTab.className = 'sub-dossier-tab';
+        subTab.innerHTML = `
+            <span class="folder-icon">📁</span>
+            ${item.Topic}
             <span class="toggle-icon">▶</span>
         `;
         
-        const content = document.createElement('div');
-        content.className = 'sub-dossier-content';
+        // The "Body" of the sub-folder
+        const subBody = document.createElement('div');
+        subBody.className = 'sub-dossier-body';
+
+        // Content Wrapper (for animation)
+        const contentWrapper = document.createElement('div');
+        contentWrapper.className = 'sub-dossier-content-wrapper';
         
         let referencesHtml = '';
         if (item.References) {
             referencesHtml = `<div class="tags"><strong>Refs:</strong> ${item.References}</div>`;
         }
 
-        content.innerHTML = `
+        contentWrapper.innerHTML = `
             <pre>${item.Prompt}</pre>
             ${referencesHtml}
         `;
         
-        header.onclick = () => {
-            const isOpen = subDossier.classList.contains('open');
-            // Close all others? Optional. Let's keep multiple openable.
-            subDossier.classList.toggle('open');
+        // Assemble
+        subBody.appendChild(contentWrapper);
+        subDossierContainer.appendChild(subTab);
+        subDossierContainer.appendChild(subBody);
+        
+        // Interaction
+        subTab.onclick = () => {
+            subDossierContainer.classList.toggle('open');
+            // Update icon rotation logic if needed via class
         };
 
-        subDossier.appendChild(header);
-        subDossier.appendChild(content);
-        contentContainer.appendChild(subDossier);
+        contentContainer.appendChild(subDossierContainer);
     });
 }
 
